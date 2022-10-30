@@ -16,12 +16,13 @@
 
   </div>
 
+  <button type="button" onclick="saveToDB()">Save GeoJSON</button>
+
   <h1>List Misi</h1>
   <ul id="listMisi">
     
   </ul>
 
-  <button type="button" onclick="downloadGeoJSON()">Download GeoJSON</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.2/leaflet.js" integrity="sha512-KMraOVM0qMVE0U1OULTpYO4gg5MZgazwPAPyMQWfOkEshpwlLQFCHZ/0lBXyviDNVL+pBGwmeXQnuvGK8Fscvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -64,6 +65,14 @@
 
     function downloadGeoJSON() {
       // console.log(drawnItems.to)
+    }
+
+    function saveToDB() {
+        $.post(
+            '/api/geoJSON', {
+                geoJSON: JSON.stringify(drawnItems.toGeoJSON())
+            }
+        )
     }
 
   </script>
